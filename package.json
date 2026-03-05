@@ -1,13 +1,15 @@
-{
-  "name": "smgpub-client",
-  "private": true,
-  "version": "1.0.0",
-  "type": "module",
-   "scripts": {
-  "dev": "concurrently \"npm run dev --prefix client\" \"npm run start --prefix server\""
-}
-,
-  "devDependencies": {
-    "vite": "^5.0.0"
-  }
-}
+# SMGPUB | Unified Creator Node
+
+A high-performance, single-page dashboard for modern creators to publish, distribute, and monetize their work.
+
+## 🚀 Quick Start
+1. **Install Dependencies**: `npm run install-all`
+2. **Setup Environment**: Create a `.env` in `/server` with your Stripe, Postgres, and SendGrid keys.
+3. **Launch Dev Environment**: `npm run dev`
+
+## 🛠️ Tech Stack
+- **Frontend**: Vite + Wavesurfer.js + Chart.js
+- **Backend**: Node.js + Express
+- **Database**: PostgreSQL (Neon/Supabase)
+- **Payments**: Stripe
+
