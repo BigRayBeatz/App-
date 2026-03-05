@@ -37,4 +37,27 @@ const session = await stripe.checkout.sessions.create({
     cancel_url: 'https://smgpub.com/beats',
 });
 
+const { OpenAI } = require('openai');
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+app.post('/api/ai/generate-marketing', async (req, res) => {
+    const { title, mood, bpm } = req.body;
+
+    try {
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4-turbo-preview", // 2026 industry standard
+            messages: [{
+                role: "system",
+                content: "You are a top-tier music marketing agent. Create a viral 280-character post to sell a beat."
+            }, {
+                role: "user",
+                content: `Beat Title: ${title}, Mood: ${mood}, BPM: ${bpm}. Include a call to action to buy at SMGPUB.`
+            }],
+        });
+
+        res.json({ copy: completion.choices[0].message.content });
+    } catch (err) {
+        res.status(500).json({ error: "AI Node Timeout" });
+    }
+});
 
