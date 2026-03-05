@@ -1,0 +1,18 @@
+.upload-vault {
+    border: 2px dashed #6366f1;
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    background: rgba(99, 102, 241, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-vault.highlight {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: #a855f7;
+    transform: scale(1.02);
+}
+
+.success { color: #10b981; font-weight: bold; }
+.error { color: #ef4444; }
