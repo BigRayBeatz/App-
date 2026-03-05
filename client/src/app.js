@@ -13,5 +13,13 @@ async function generateAISalesCopy(title, mood, bpm) {
             <p>${data.copy}</p>
             <button onclick="navigator.clipboard.writeText('${data.copy}')">📋 Copy to Clipboard</button>
         `;
-    }
+    }export function updateSEO(title, description) {
+    document.title = `${title} | SMGPUB`;
+    document.querySelector('meta[name="description"]').setAttribute("content", description);
+    
+    // OpenGraph for Social Media Previews (Crucial for Sales)
+    document.querySelector('meta[property="og:title"]').setAttribute("content", title);
+    document.querySelector('meta[property="og:image"]').setAttribute("content", "/logo.png");
+}
+
 }
