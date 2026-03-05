@@ -59,5 +59,38 @@ app.post('/api/ai/generate-marketing', async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: "AI Node Timeout" });
     }
+});const multer = require('multer');
+const { createClient } = require('@supabase/supabase-js');
+const upload = multer({ dest: 'temp/' }); // Temporary local storage
+
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+
+// Bulk Upload + AI Auto-Description
+app.post('/api/beats/bulk', upload.array('files', 50), async (req, res) => {
+    const results = [];
+
+    for (const file of req.files) {
+        // 1. Upload to Supabase Storage
+        const { data, error } = await supabase.storage
+            .from('beats')
+            .upload(`raw/${Date.now()}-${file.originalname}`, file);
+
+        if (data) {
+            // 2. Trigger AI for this specific beat
+            const aiDescription = await openai.chat.completions.create({
+                model: "gpt-4o-mini",
+                messages: [{ role: "user", content: `Write a 1-sentence hype description for a beat named ${file.originalname}` }]
+            });
+
+            // 3. Save to Database
+            const dbEntry = await pool.query(
+                'INSERT INTO beats (title, audio_url, description) VALUES ($1, $2, $3) RETURNING *',
+                [file.originalname, data.path, aiDescription.choices[0].message.content]
+            );
+            results.push(dbEntry.rows[0]);
+        }
+    }
+    res.json({ message: "Bulk Node Synced", uploaded: results.length });
 });
+
 
