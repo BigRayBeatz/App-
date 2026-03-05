@@ -22,4 +22,19 @@ if (event.type === 'checkout.session.completed') {
 
     await sgMail.send(msg);
     console.log(`📧 Beat Node: Delivery sent for ${beatTitle}`);
-}
+};
+const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [{ price: 'price_123...', quantity: 1 }],
+    mode: 'payment',
+    // CRITICAL: This allows the webhook to know WHO and WHAT
+    metadata: {
+        userId: 'user_98765', 
+        beatTitle: 'Midnight Logic',
+        downloadUrl: 'https://storage.supabase.co/beats/midnight.wav'
+    },
+    success_url: 'https://smgpub.com/dashboard?success=true',
+    cancel_url: 'https://smgpub.com/beats',
+});
+
+
