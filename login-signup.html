@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Join SMGPUB</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="auth-page">
+    <div class="auth-card">
+        <div id="auth-header">
+            <h2 id="auth-title">Login to SMGPUB</h2>
+        </div>
+        <form id="auth-form">
+            <input type="email" placeholder="Email Address" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit" class="btn-primary w-100">Proceed</button>
+        </form>
+        <p id="auth-toggle-text">New creator? <a href="#" onclick="toggleAuth()">Create an account</a></p>
+    </div>
+
+    <script>
+        function toggleAuth() {
+            const title = document.getElementById('auth-title');
+            const toggleText = document.getElementById('auth-toggle-text');
+            if (title.innerText === 'Login to SMGPUB') {
+                title.innerText = 'Create your Node';
+                toggleText.innerHTML = 'Already have an account? <a href="#" onclick="toggleAuth()">Login</a>';
+            } else {
+                title.innerText = 'Login to SMGPUB';
+                toggleText.innerHTML = 'New creator? <a href="#" onclick="toggleAuth()">Create an account</a>';
+            }
+        }
+    </script>
+</body>
+</html>

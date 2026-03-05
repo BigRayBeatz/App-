@@ -1,0 +1,58 @@
+<main class="main-content"><section class="distribution-hub">
+    <div class="hub-header">
+        <h2>Multi-Channel Distribution</h2>
+        <p>Push your latest publication to all active nodes at once.</p>
+    </div>
+
+    <div class="channel-grid">
+        <div class="channel-card">
+            <div class="channel-info">
+                <span class="icon">𝕏</span>
+                <div>
+                    <h4>X (Twitter)</h4>
+                    <small>Status: <span id="x-status">Connected</span></small>
+                </div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" class="channel-switch" data-platform="x">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="channel-card">
+            <div class="channel-info">
+                <span class="icon">in</span>
+                <div>
+                    <h4>LinkedIn</h4>
+                    <small>Status: <span id="li-status">Connected</span></small>
+                </div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" class="channel-switch" data-platform="linkedin">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+
+    <button id="sync-all-btn" class="btn-primary-lg">Sync All Active Channels</button>
+</section>
+
+    <h2>Distribution Hub</h2>
+    <div class="channel-list">
+        <div class="channel-item">
+            <span>X (Twitter)</span>
+            <label class="switch">
+                <input type="checkbox" id="sync-x">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="channel-item">
+            <span>LinkedIn</span>
+            <label class="switch">
+                <input type="checkbox" id="sync-li">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <button class="btn-primary">Sync All Active Channels</button>
+    </div>
+</main>

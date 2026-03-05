@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | SMGPUB</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">SMGPUB Admin</div>
+            <nav class="nav-menu">
+                <a href="/dashboard.html" class="active">🏠 Overview</a>
+                <a href="/publishing-admin.html">📄 Publishing</a>
+                <a href="/distribute.html">🌐 Distribute</a>
+                <a href="/marketing.html">📈 Marketing</a>
+                <a href="/beat.html">🎵 Beat Store</a>
+                <a href="/creator.html">🎨 Creator Suite</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="/login-signup.html">Logout</a>
+            </div>
+        </aside>
+
+        <header class="topbar">
+            <div class="breadcrumb">Overview / Statistics</div>
+            <div class="user-profile">Account Node</div>
+        </header>
+
+        <main class="main-content">
+            <div class="stats-grid">
+                <div class="stat-card"><h3>Total Views</h3><p>24.5k</p></div>
+                <div class="stat-card"><h3>Revenue</h3><p>$1,402.00</p></div>
+                <div class="stat-card"><h3>Growth</h3><p>+12%</p></div>
+            </div>
+            </main>
+    </div>
+
+import { apiRequest } from './api.js';
+
+async function checkSystem() {
+    const data = await apiRequest('/api/health');
+    if (data?.status === 'online') {
+        console.log("✅ Server Node is responsive.");
+    }
+}
+
+</body>
+</html>
